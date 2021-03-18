@@ -78,20 +78,16 @@
         });
     }
 
-    document.querySelectorAll('[data-bs-toggle="tab"]:not(.d-hash-none)').forEach(function (el) {
+    document.querySelectorAll('[data-bs-toggle]:not(.d-hash-none)').forEach(function (el) {
         changeHash(el);
     });
-
-    document.querySelectorAll('[data-bs-toggle="collapse"]:not(.d-hash-none)').forEach(function (el) {
-        changeHash(el);
-    });
-
+    
     function changeHash(el) {
         el.addEventListener('click', function (e) {
             if (history.pushState) {
-                history.pushState(null, null, e.target.hash);
+                history.pushState(null, null, e.currentTarget.hash);
             } else {
-                window.location.hash = e.target.hash; //Polyfill for old browsers
+                window.location.hash = e.currentTarget.hash; //Polyfill for old browsers
             }
         });
     }
